@@ -1,0 +1,329 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+public class Calendar implements ActionListener{
+    private JFrame frame;
+    private JPanel monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+    private JLabel dateOnMonday, dateOnTuesday, dateOnWednesday, dateOnThursday, dateOnFriday, dateOnSaturday, dateOnSunday;
+    private JLabel sizeableEventsMonday, sizeableEventsTuesday, sizeableEventsWednesday, sizeableEventsThursday, sizeableEventsFriday, sizeableEventsSaturday, sizeableEventsSunday;
+    private JTextField writeYourEventsMonday, writeYourEventsTuesday, writeYourEventsWednesday, writeYourEventsThursday, writeYourEventsFriday, writeYourEventsSaturday, writeYourEventsSunday;
+    private JButton createEventsMonday, createEventsTuesday, createEventsWednesday, createEventsThursday, createEventsFriday, createEventsSaturday, createEventsSunday;
+
+
+    public Calendar(){ // You create gridLayout that consists in each borderLayout
+        // Creating window
+
+        frame = new JFrame("Mini Calendar");
+        frame.setSize(1000, 800);
+        frame.setLayout(new GridLayout(1, 7));
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        monday = new JPanel();
+        frame.add(monday);
+
+        tuesday = new JPanel();
+        frame.add(tuesday);
+
+        wednesday = new JPanel();
+        frame.add(wednesday);
+
+        thursday = new JPanel();
+        frame.add(thursday);
+
+        friday = new JPanel();
+        frame.add(friday);
+
+        saturday = new JPanel();
+        frame.add(saturday);
+
+        sunday = new JPanel();
+        frame.add(sunday);
+
+        frame.setVisible(true);
+
+        // Make Column for Monday
+        // Monday 13 Oktober as label put in on the north
+        // Addable Label on the center using if later in the actionPerformed
+        // TextField for creating an event in the south
+        // Button to put the textfield in the addable label in the south
+
+        monday.setLayout(new BorderLayout());
+
+        dateOnMonday = new JLabel("MONDAY");
+        monday.add(dateOnMonday, BorderLayout.NORTH);
+
+        sizeableEventsMonday = new JLabel();
+        monday.add(sizeableEventsMonday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButton = new JPanel();
+        monday.add(combinationofTexfielAndButton, BorderLayout.SOUTH);
+        combinationofTexfielAndButton.setLayout(new BorderLayout());
+
+        writeYourEventsMonday = new JTextField();
+        combinationofTexfielAndButton.add(writeYourEventsMonday, BorderLayout.NORTH);
+
+        createEventsMonday = new JButton("Skapa");
+        combinationofTexfielAndButton.add(createEventsMonday, BorderLayout.SOUTH);
+        createEventsMonday.addActionListener((ActionListener) this);
+
+        // Tuesday
+        tuesday.setLayout(new BorderLayout());
+
+        dateOnTuesday = new JLabel("TUESDAY");
+        tuesday.add(dateOnTuesday, BorderLayout.NORTH);
+
+        sizeableEventsTuesday = new JLabel();
+        tuesday.add(sizeableEventsTuesday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonTuesday = new JPanel();
+        tuesday.add(combinationofTexfielAndButtonTuesday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonTuesday.setLayout(new BorderLayout());
+
+        writeYourEventsTuesday = new JTextField();
+        combinationofTexfielAndButtonTuesday.add(writeYourEventsTuesday, BorderLayout.NORTH);
+
+        createEventsTuesday = new JButton("Skapa");
+        combinationofTexfielAndButtonTuesday.add(createEventsTuesday, BorderLayout.SOUTH);
+        createEventsTuesday.addActionListener((ActionListener) this);
+
+        // Wednesday
+        wednesday.setLayout(new BorderLayout());
+
+        dateOnWednesday = new JLabel("WEDNESDAY");
+        wednesday.add(dateOnWednesday, BorderLayout.NORTH);
+
+        sizeableEventsWednesday = new JLabel();
+        wednesday.add(sizeableEventsWednesday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonWednesday = new JPanel();
+        wednesday.add(combinationofTexfielAndButtonWednesday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonWednesday.setLayout(new BorderLayout());
+
+        writeYourEventsWednesday = new JTextField();
+        combinationofTexfielAndButtonWednesday.add(writeYourEventsWednesday, BorderLayout.NORTH);
+
+        createEventsWednesday = new JButton("Skapa");
+        combinationofTexfielAndButtonWednesday.add(createEventsWednesday, BorderLayout.SOUTH);
+        createEventsWednesday.addActionListener((ActionListener) this);
+
+        // Thursday
+
+
+        thursday.setLayout(new BorderLayout());
+
+        dateOnThursday = new JLabel("THURSDAY");
+        thursday.add(dateOnThursday, BorderLayout.NORTH);
+
+        sizeableEventsThursday = new JLabel();
+        thursday.add(sizeableEventsThursday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonThursday = new JPanel();
+        thursday.add(combinationofTexfielAndButtonThursday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonThursday.setLayout(new BorderLayout());
+
+        writeYourEventsThursday = new JTextField();
+        combinationofTexfielAndButtonThursday.add(writeYourEventsThursday, BorderLayout.NORTH);
+
+        createEventsThursday = new JButton("Skapa");
+        combinationofTexfielAndButtonThursday.add(createEventsThursday, BorderLayout.SOUTH);
+        createEventsThursday.addActionListener((ActionListener) this);
+
+        // Friday
+        friday.setLayout(new BorderLayout());
+
+        dateOnFriday = new JLabel("FRIDAY");
+        friday.add(dateOnFriday, BorderLayout.NORTH);
+
+        sizeableEventsFriday = new JLabel();
+        friday.add(sizeableEventsFriday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonFriday = new JPanel();
+        friday.add(combinationofTexfielAndButtonFriday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonFriday.setLayout(new BorderLayout());
+
+        writeYourEventsFriday = new JTextField();
+        combinationofTexfielAndButtonFriday.add(writeYourEventsFriday, BorderLayout.NORTH);
+
+        createEventsFriday = new JButton("Skapa");
+        combinationofTexfielAndButtonFriday.add(createEventsFriday, BorderLayout.SOUTH);
+        createEventsFriday.addActionListener((ActionListener) this);
+
+        // Saturday
+        saturday.setLayout(new BorderLayout());
+
+        dateOnSaturday = new JLabel("SATURDAY");
+        saturday.add(dateOnSaturday, BorderLayout.NORTH);
+
+        sizeableEventsSaturday = new JLabel();
+        saturday.add(sizeableEventsSaturday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonSaturday = new JPanel();
+        saturday.add(combinationofTexfielAndButtonSaturday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonSaturday.setLayout(new BorderLayout());
+
+        writeYourEventsSaturday = new JTextField();
+        combinationofTexfielAndButtonSaturday.add(writeYourEventsSaturday, BorderLayout.NORTH);
+
+        createEventsSaturday = new JButton("Skapa");
+        combinationofTexfielAndButtonSaturday.add(createEventsSaturday, BorderLayout.SOUTH);
+        createEventsSaturday.addActionListener((ActionListener) this);
+
+        // Sunday
+        sunday.setLayout(new BorderLayout());
+
+        dateOnSunday = new JLabel("SUNDAY");
+        sunday.add(dateOnSunday, BorderLayout.NORTH);
+
+        sizeableEventsSunday = new JLabel();
+        sunday.add(sizeableEventsSunday, BorderLayout.CENTER);
+
+        JPanel combinationofTexfielAndButtonSunday = new JPanel();
+        sunday.add(combinationofTexfielAndButtonSunday, BorderLayout.SOUTH);
+        combinationofTexfielAndButtonSunday.setLayout(new BorderLayout());
+
+        writeYourEventsSunday = new JTextField();
+        combinationofTexfielAndButtonSunday.add(writeYourEventsSunday, BorderLayout.NORTH);
+
+        createEventsSunday = new JButton("Skapa");
+        combinationofTexfielAndButtonSunday.add(createEventsSunday, BorderLayout.SOUTH);
+        createEventsSunday.addActionListener((ActionListener) this);
+
+        ArrayList<JPanel> sevenDaysInAWeek = new ArrayList<JPanel>(7);
+        sevenDaysInAWeek.add(monday);
+        sevenDaysInAWeek.add(tuesday);
+        sevenDaysInAWeek.add(wednesday);
+        sevenDaysInAWeek.add(thursday);
+        sevenDaysInAWeek.add(friday);
+        sevenDaysInAWeek.add(saturday);
+        sevenDaysInAWeek.add(sunday);
+        
+        for (int i=0; i<7; i++){
+            Days today = new Days();
+            String toDay = today.getThisWeekDate();
+            //if one of the labels contains the word of day in the today.getThisWeekDate(), then we set them in
+            //Also put the whole week in (that means you make an array for a week that contains all the dates)
+
+
+        }
+
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        JButton clickedButton = (JButton) e.getSource();
+        // Monday
+        if (clickedButton == createEventsMonday){
+            if (writeYourEventsMonday.getText().isEmpty()) {
+                String addEventMonday = writeYourEventsMonday.getText();
+                sizeableEventsMonday.setText(addEventMonday);
+                writeYourEventsMonday.setText("");
+            }
+            else {
+                String existingEventMonday = sizeableEventsMonday.getText();
+                String addEventMonday = writeYourEventsMonday.getText();
+                sizeableEventsMonday.setText(existingEventMonday + "\n" + addEventMonday);
+                writeYourEventsMonday.setText("");
+            }
+        }
+        // Tuesday
+        if (clickedButton == createEventsTuesday){
+            if (writeYourEventsTuesday.getText().isEmpty()) {
+                String addEventTuesday = writeYourEventsTuesday.getText();
+                sizeableEventsTuesday.setText(addEventTuesday);
+                writeYourEventsTuesday.setText("");
+            }
+            else {
+                String existingEventTuesday = sizeableEventsTuesday.getText();
+                String addEventTuesday = writeYourEventsTuesday.getText();
+                sizeableEventsTuesday.setText(existingEventTuesday + "" + addEventTuesday);
+                writeYourEventsTuesday.setText("");
+            }
+        }
+        // Wednesday
+        if (clickedButton == createEventsWednesday){
+            if (writeYourEventsWednesday.getText().isEmpty()) {
+                String addEventWednesday = writeYourEventsWednesday.getText();
+                sizeableEventsWednesday.setText(addEventWednesday);
+                writeYourEventsWednesday.setText("");
+            }
+            else {
+                String existingEventWednesday = sizeableEventsWednesday.getText();
+                String addEventWednesday = writeYourEventsWednesday.getText();
+                sizeableEventsWednesday.setText(existingEventWednesday + "" + addEventWednesday);
+                writeYourEventsWednesday.setText("");
+            }
+        }
+
+        // Thursday
+        if (clickedButton == createEventsThursday){
+            if (writeYourEventsThursday.getText().isEmpty()) {
+                String addEventThursday = writeYourEventsThursday.getText();
+                sizeableEventsThursday.setText(addEventThursday);
+                writeYourEventsThursday.setText("");
+            }
+            else {
+                String existingEventThursday = sizeableEventsThursday.getText();
+                String addEventThursday = writeYourEventsThursday.getText();
+                sizeableEventsThursday.setText(existingEventThursday + "" + addEventThursday);
+                writeYourEventsThursday.setText("");
+            }
+        }
+
+        // Friday
+        if (clickedButton == createEventsFriday){
+            if (writeYourEventsFriday.getText().isEmpty()) {
+                String addEventFriday = writeYourEventsFriday.getText();
+                sizeableEventsFriday.setText(addEventFriday);
+                writeYourEventsFriday.setText("");
+            }
+            else {
+                String existingEventFriday = sizeableEventsFriday.getText();
+                String addEventFriday = writeYourEventsFriday.getText();
+                sizeableEventsFriday.setText(existingEventFriday + "" + addEventFriday);
+                writeYourEventsFriday.setText("");
+            }
+        }
+
+        // Saturday
+        if (clickedButton == createEventsSaturday){
+            if (writeYourEventsSaturday.getText().isEmpty()) {
+                String addEventSaturday = writeYourEventsSaturday.getText();
+                sizeableEventsSaturday.setText(addEventSaturday);
+                writeYourEventsSaturday.setText("");
+            }
+            else {
+                String existingEventSaturday = sizeableEventsSaturday.getText();
+                String addEventSaturday = writeYourEventsSaturday.getText();
+                sizeableEventsSaturday.setText(existingEventSaturday + "" + addEventSaturday);
+                writeYourEventsSaturday.setText("");
+            }
+        }
+
+        // Sunday
+        if (clickedButton == createEventsSunday){
+            if (writeYourEventsSunday.getText().isEmpty()) {
+                String addEventSunday = writeYourEventsSunday.getText();
+                sizeableEventsSunday.setText(addEventSunday);
+                writeYourEventsSunday.setText("");
+            }
+            else {
+                String existingEventSunday = sizeableEventsSunday.getText();
+                String addEventSunday = writeYourEventsSunday.getText();
+                sizeableEventsSunday.setText(existingEventSunday + "" + addEventSunday);
+                writeYourEventsSunday.setText("");
+            }
+        }
+        frame.revalidate();  // Inform the panel that a component has been added
+        frame.repaint();  // Refresh the panel to show the new component
+    }
+}
+
+//Make an array that starts from 0 to 7, 0 being monday and 7 being sunday
+//the array will contain week, or named as week, as it will automatically set which date is today by pinning the [i] to todays date
+//
+//
+
+
